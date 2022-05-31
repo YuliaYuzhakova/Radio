@@ -3,7 +3,7 @@ package ru.netology.domain.radio;
 public class Radio {
 
     private int currentStation;
-    public int soundVolume;
+    private int soundVolume;
 
 
     //Возможность выставлять номер радиостанции через прямое указание её номера, но в рамках 0 - 9
@@ -18,7 +18,7 @@ public class Radio {
     }
 
     //Выбор следующей станции Next
-    public int NextStation(int newCurrentStation) {
+    public int nextStation(int newCurrentStation) {
         if (newCurrentStation >= 9) {
             currentStation = 0;
         }
@@ -29,16 +29,55 @@ public class Radio {
     }
 
     //Выбор предыдущей станции Prev
-    public void PrevStation(int newCurrentStation) {
+    public int prevStation(int newCurrentStation) {
         if (newCurrentStation <= 0) {
             currentStation = 9;
         }
         if (newCurrentStation > 0) {
             currentStation = newCurrentStation - 1;
         }
+        return currentStation;
     }
 
     public int getCurrentStation() {
         return currentStation;
+    }
+
+    //Выбор громкости звука в диапазоне от 0 до 10
+    public void setSoundVolume(int newSoundVolume) {
+        if (newSoundVolume < 0) {
+            return;
+        }
+        if (newSoundVolume > 10) {
+            return;
+        }
+        this.soundVolume = newSoundVolume;
+    }
+
+
+    //Увеличение громкости звука +
+    public int increaseSoundVolume(int newSoundVolume) {
+        if (newSoundVolume >= 10) {
+            soundVolume = 10;
+        }
+        if (newSoundVolume < 10) {
+            soundVolume = newSoundVolume + 1;
+        }
+        return soundVolume;
+    }
+
+    //Уменьшение громкости звука -
+    public int decreaseSoundVolume(int newSoundVolume) {
+        if (newSoundVolume <= 0) {
+            soundVolume = 0;
+        }
+        if (newSoundVolume > 0) {
+            soundVolume = newSoundVolume - 1;
+        }
+        return soundVolume;
+    }
+
+    public int getSoundVolume() {
+        return soundVolume;
     }
 }

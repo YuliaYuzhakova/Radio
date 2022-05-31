@@ -49,7 +49,7 @@ public class RadioTest {
     @Test
     void choiceNextStation1() {
         Radio station = new Radio();
-        station.NextStation(10);
+        station.nextStation(10);
         int actual = station.getCurrentStation();
         int expected = 0;
 
@@ -59,7 +59,7 @@ public class RadioTest {
     @Test
     void choiceNextStation2() {
         Radio station = new Radio();
-        station.NextStation(8);
+        station.nextStation(8);
         int actual = station.getCurrentStation();
         int expected = 9;
 
@@ -69,7 +69,7 @@ public class RadioTest {
     @Test
     void choiceNextStation3() {
         Radio station = new Radio();
-        station.NextStation(9);
+        station.nextStation(9);
         int actual = station.getCurrentStation();
         int expected = 0;
 
@@ -80,7 +80,7 @@ public class RadioTest {
     @Test
     void choicePrevStation1() {
         Radio station = new Radio();
-        station.PrevStation(2);
+        station.prevStation(2);
         int actual = station.getCurrentStation();
         int expected = 1;
 
@@ -90,7 +90,7 @@ public class RadioTest {
     @Test
     void choicePrevStation2() {
         Radio station = new Radio();
-        station.PrevStation(0);
+        station.prevStation(0);
         int actual = station.getCurrentStation();
         int expected = 9;
 
@@ -100,9 +100,113 @@ public class RadioTest {
     @Test
     void choicePrevStation3() {
         Radio station = new Radio();
-        station.PrevStation(-1);
+        station.prevStation(-1);
         int actual = station.getCurrentStation();
         int expected = 9;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    //Выбор громкости звука в диапазоне от 0 до 10
+    //Проверка значений 11, 10, 9, -1
+    @Test
+    void choiceVolumeSound1() {
+        Radio station = new Radio();
+        station.setSoundVolume(9);
+        int actual = station.getSoundVolume();
+        int expected = 9;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void choiceVolumeSound2() {
+        Radio station = new Radio();
+        station.setSoundVolume(10);
+        int actual = station.getSoundVolume();
+        int expected = 10;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void choiceVolumeSound3() {
+        Radio station = new Radio();
+        station.setSoundVolume(11);
+        int actual = station.getSoundVolume();
+        int expected = 0;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void choiceVolumeSound4() {
+        Radio station = new Radio();
+        station.setSoundVolume(-1);
+        int actual = station.getSoundVolume();
+        int expected = 0;
+
+        assertEquals(actual, expected);
+    }
+
+    //Увеличение громкости звука +, проверка значений 6, 10, 11
+    @Test
+    void increaseVolumeSound1() {
+        Radio station = new Radio();
+        station.increaseSoundVolume(6);
+        int actual = station.getSoundVolume();
+        int expected = 7;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void increaseVolumeSound2() {
+        Radio station = new Radio();
+        station.increaseSoundVolume(10);
+        int actual = station.getSoundVolume();
+        int expected = 10;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void increaseVolumeSound3() {
+        Radio station = new Radio();
+        station.increaseSoundVolume(11);
+        int actual = station.getSoundVolume();
+        int expected = 10;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    //Уменьшение громкости звука -, проверка значений -1, 0, 3, 10
+    @Test
+    void decreaseVolumeSound1() {
+        Radio station = new Radio();
+        station.decreaseSoundVolume(-1);
+        int actual = station.getSoundVolume();
+        int expected = 0;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void decreaseVolumeSound2() {
+        Radio station = new Radio();
+        station.decreaseSoundVolume(0);
+        int actual = station.getSoundVolume();
+        int expected = 0;
+
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void decreaseVolumeSound3() {
+        Radio station = new Radio();
+        station.decreaseSoundVolume(3);
+        int actual = station.getSoundVolume();
+        int expected = 2;
 
         Assertions.assertEquals(actual, expected);
     }
