@@ -18,25 +18,25 @@ public class Radio {
     }
 
     //Выбор следующей станции Next
-    public int nextStation(int newCurrentStation) {
-        if (newCurrentStation >= 9) {
-            currentStation = 0;
+    public void nextStation() {
+        if (currentStation >= 9) {
+            this.currentStation = 0;
+            return;
+        } else {
+            this.currentStation = currentStation + 1;
+            return;
         }
-        if (newCurrentStation < 9) {
-            currentStation = newCurrentStation + 1;
-        }
-        return currentStation;
     }
 
     //Выбор предыдущей станции Prev
-    public int prevStation(int newCurrentStation) {
-        if (newCurrentStation <= 0) {
-            currentStation = 9;
+    public void prevStation() {
+        if (currentStation <= 0) {
+            this.currentStation = 9;
+            return;
+        } else {
+            this.currentStation = currentStation - 1;
+            return;
         }
-        if (newCurrentStation > 0) {
-            currentStation = newCurrentStation - 1;
-        }
-        return currentStation;
     }
 
     public int getCurrentStation() {
@@ -46,9 +46,11 @@ public class Radio {
     //Выбор громкости звука в диапазоне от 0 до 10
     public void setSoundVolume(int newSoundVolume) {
         if (newSoundVolume < 0) {
+            //this.soundVolume = 0;
             return;
         }
         if (newSoundVolume > 10) {
+            this.soundVolume = 10;
             return;
         }
         this.soundVolume = newSoundVolume;
@@ -56,25 +58,17 @@ public class Radio {
 
 
     //Увеличение громкости звука +
-    public int increaseSoundVolume(int newSoundVolume) {
-        if (newSoundVolume >= 10) {
-            soundVolume = 10;
+    public void increaseSoundVolume() {
+        if (soundVolume < 10) {
+            this.soundVolume = soundVolume + 1;
         }
-        if (newSoundVolume < 10) {
-            soundVolume = newSoundVolume + 1;
-        }
-        return soundVolume;
     }
 
     //Уменьшение громкости звука -
-    public int decreaseSoundVolume(int newSoundVolume) {
-        if (newSoundVolume <= 0) {
-            soundVolume = 0;
+    public void decreaseSoundVolume() {
+        if (soundVolume > 0) {
+            this.soundVolume = soundVolume - 1;
         }
-        if (newSoundVolume > 0) {
-            soundVolume = newSoundVolume - 1;
-        }
-        return soundVolume;
     }
 
     public int getSoundVolume() {

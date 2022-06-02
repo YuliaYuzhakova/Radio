@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RadioTest {
 
     //Возможность выставлять номер радиостанции через прямое указание её номера, но в рамках 0 - 9
-    //Проверка значений 10, 5, -1
     @Test
     void choiceRadioStation() {
         Radio station = new Radio();
@@ -45,13 +44,14 @@ public class RadioTest {
         assertEquals(actual, expected);
     }
 
-    //Выбор следующей станции Next, проверка граничных значений 10, 9, 8
+    //Выбор следующей станции Next
     @Test
     void choiceNextStation1() {
         Radio station = new Radio();
-        station.nextStation(10);
+        station.setCurrentStation(7);
+        station.nextStation();
         int actual = station.getCurrentStation();
-        int expected = 0;
+        int expected = 8;
 
         Assertions.assertEquals(actual, expected);
     }
@@ -59,56 +59,55 @@ public class RadioTest {
     @Test
     void choiceNextStation2() {
         Radio station = new Radio();
-        station.nextStation(8);
+        station.setCurrentStation(9);
+        station.nextStation();
         int actual = station.getCurrentStation();
-        int expected = 9;
-
+        int expected = 0;
         Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void choiceNextStation3() {
         Radio station = new Radio();
-        station.nextStation(9);
+        station.setCurrentStation(0);
+        station.nextStation();
         int actual = station.getCurrentStation();
-        int expected = 0;
-
+        int expected = 1;
         Assertions.assertEquals(actual, expected);
     }
 
-    //Выбор предыдущей станции Prev, , проверка граничных значений 2, 0, -1
+    //Выбор предыдущей станции Prev
     @Test
     void choicePrevStation1() {
         Radio station = new Radio();
-        station.prevStation(2);
+        station.setCurrentStation(2);
+        station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 1;
-
         Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void choicePrevStation2() {
         Radio station = new Radio();
-        station.prevStation(0);
+        station.setCurrentStation(0);
+        station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 9;
-
         Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void choicePrevStation3() {
         Radio station = new Radio();
-        station.prevStation(-1);
+        station.setCurrentStation(-1);
+        station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 9;
-
         Assertions.assertEquals(actual, expected);
     }
 
     //Выбор громкости звука в диапазоне от 0 до 10
-    //Проверка значений 11, 10, 9, -1
     @Test
     void choiceVolumeSound1() {
         Radio station = new Radio();
@@ -134,7 +133,7 @@ public class RadioTest {
         Radio station = new Radio();
         station.setSoundVolume(11);
         int actual = station.getSoundVolume();
-        int expected = 0;
+        int expected = 10;
 
         assertEquals(actual, expected);
     }
@@ -149,11 +148,12 @@ public class RadioTest {
         assertEquals(actual, expected);
     }
 
-    //Увеличение громкости звука +, проверка значений 6, 10, 11
+    //Увеличение громкости звука
     @Test
     void increaseVolumeSound1() {
         Radio station = new Radio();
-        station.increaseSoundVolume(6);
+        station.setSoundVolume(6);
+        station.increaseSoundVolume();
         int actual = station.getSoundVolume();
         int expected = 7;
 
@@ -163,7 +163,8 @@ public class RadioTest {
     @Test
     void increaseVolumeSound2() {
         Radio station = new Radio();
-        station.increaseSoundVolume(10);
+        station.setSoundVolume(10);
+        station.increaseSoundVolume();
         int actual = station.getSoundVolume();
         int expected = 10;
 
@@ -173,18 +174,20 @@ public class RadioTest {
     @Test
     void increaseVolumeSound3() {
         Radio station = new Radio();
-        station.increaseSoundVolume(11);
+        station.setSoundVolume(11);
+        station.increaseSoundVolume();
         int actual = station.getSoundVolume();
         int expected = 10;
 
         Assertions.assertEquals(actual, expected);
     }
 
-    //Уменьшение громкости звука -, проверка значений -1, 0, 3, 10
+    //Уменьшение громкости звука
     @Test
     void decreaseVolumeSound1() {
         Radio station = new Radio();
-        station.decreaseSoundVolume(-1);
+        station.setSoundVolume(-1);
+        station.decreaseSoundVolume();
         int actual = station.getSoundVolume();
         int expected = 0;
 
@@ -194,7 +197,8 @@ public class RadioTest {
     @Test
     void decreaseVolumeSound2() {
         Radio station = new Radio();
-        station.decreaseSoundVolume(0);
+        station.setSoundVolume(0);
+        station.decreaseSoundVolume();
         int actual = station.getSoundVolume();
         int expected = 0;
 
@@ -204,9 +208,10 @@ public class RadioTest {
     @Test
     void decreaseVolumeSound3() {
         Radio station = new Radio();
-        station.decreaseSoundVolume(3);
+        station.setSoundVolume(10);
+        station.decreaseSoundVolume();
         int actual = station.getSoundVolume();
-        int expected = 2;
+        int expected = 9;
 
         Assertions.assertEquals(actual, expected);
     }
