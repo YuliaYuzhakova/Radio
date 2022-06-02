@@ -11,7 +11,6 @@ public class RadioTest {
     @Test
     void choiceRadioStation() {
         Radio station = new Radio();
-
         station.setCurrentStation(5);
 
         int actual = station.getCurrentStation();
@@ -23,7 +22,6 @@ public class RadioTest {
     @Test
     void choiceRadioStationMax() {
         Radio station = new Radio();
-
         station.setCurrentStation(10);
 
         int actual = station.getCurrentStation();
@@ -35,7 +33,6 @@ public class RadioTest {
     @Test
     void choiceRadioStationMin() {
         Radio station = new Radio();
-
         station.setCurrentStation(-1);
 
         int actual = station.getCurrentStation();
@@ -63,6 +60,7 @@ public class RadioTest {
         station.nextStation();
         int actual = station.getCurrentStation();
         int expected = 0;
+
         Assertions.assertEquals(actual, expected);
     }
 
@@ -73,6 +71,7 @@ public class RadioTest {
         station.nextStation();
         int actual = station.getCurrentStation();
         int expected = 1;
+
         Assertions.assertEquals(actual, expected);
     }
 
@@ -84,6 +83,7 @@ public class RadioTest {
         station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 1;
+
         Assertions.assertEquals(actual, expected);
     }
 
@@ -94,6 +94,7 @@ public class RadioTest {
         station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 9;
+
         Assertions.assertEquals(actual, expected);
     }
 
@@ -104,6 +105,7 @@ public class RadioTest {
         station.prevStation();
         int actual = station.getCurrentStation();
         int expected = 9;
+
         Assertions.assertEquals(actual, expected);
     }
 
@@ -112,6 +114,7 @@ public class RadioTest {
     void choiceVolumeSound1() {
         Radio station = new Radio();
         station.setSoundVolume(9);
+
         int actual = station.getSoundVolume();
         int expected = 9;
 
@@ -122,6 +125,7 @@ public class RadioTest {
     void choiceVolumeSound2() {
         Radio station = new Radio();
         station.setSoundVolume(10);
+
         int actual = station.getSoundVolume();
         int expected = 10;
 
@@ -132,6 +136,7 @@ public class RadioTest {
     void choiceVolumeSound3() {
         Radio station = new Radio();
         station.setSoundVolume(11);
+
         int actual = station.getSoundVolume();
         int expected = 10;
 
@@ -142,6 +147,7 @@ public class RadioTest {
     void choiceVolumeSound4() {
         Radio station = new Radio();
         station.setSoundVolume(-1);
+
         int actual = station.getSoundVolume();
         int expected = 0;
 
