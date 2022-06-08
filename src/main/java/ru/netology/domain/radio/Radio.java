@@ -3,15 +3,31 @@ package ru.netology.domain.radio;
 public class Radio {
 
     private int currentStation;
-    private int soundVolume;
+    private int countStation = 10;
+    private int minStation;
 
+    private int soundVolume;
+    private int minSoundVolume;
+    private int maxSoundVolume = 100;
+
+    public int getCurrentStation() {
+        return currentStation;
+    }
+    public int getSoundVolume() {
+        return soundVolume;
+    }
+    public Radio() {
+    }
+    public Radio(int countStation) {
+        this.countStation = countStation;
+    }
 
     //Возможность выставлять номер радиостанции через прямое указание её номера, но в рамках 0 - 9
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
+        if (newCurrentStation < minStation) {
             return;
         }
-        if (newCurrentStation > 9) {
+        if (newCurrentStation > countStation - 1) {
             return;
         }
         this.currentStation = newCurrentStation;
@@ -19,8 +35,8 @@ public class Radio {
 
     //Выбор следующей станции Next
     public void nextStation() {
-        if (currentStation >= 9) {
-            this.currentStation = 0;
+        if (currentStation >= countStation - 1) {
+            this.currentStation = minStation;
             return;
         } else {
             this.currentStation = currentStation + 1;
@@ -30,8 +46,8 @@ public class Radio {
 
     //Выбор предыдущей станции Prev
     public void prevStation() {
-        if (currentStation <= 0) {
-            this.currentStation = 9;
+        if (currentStation <= minStation) {
+            this.currentStation = countStation - 1;
             return;
         } else {
             this.currentStation = currentStation - 1;
@@ -39,17 +55,14 @@ public class Radio {
         }
     }
 
-    public int getCurrentStation() {
-        return currentStation;
-    }
 
     //Выбор громкости звука в диапазоне от 0 до 10
     public void setSoundVolume(int newSoundVolume) {
-        if (newSoundVolume < 0) {
+        if (newSoundVolume < minSoundVolume) {
             return;
         }
-        if (newSoundVolume > 10) {
-            this.soundVolume = 10;
+        if (newSoundVolume > maxSoundVolume) {
+            this.soundVolume = maxSoundVolume;
             return;
         }
         this.soundVolume = newSoundVolume;
@@ -58,19 +71,15 @@ public class Radio {
 
     //Увеличение громкости звука +
     public void increaseSoundVolume() {
-        if (soundVolume < 10) {
+        if (soundVolume < maxSoundVolume) {
             this.soundVolume = soundVolume + 1;
         }
     }
 
     //Уменьшение громкости звука -
     public void decreaseSoundVolume() {
-        if (soundVolume > 0) {
+        if (soundVolume > minSoundVolume) {
             this.soundVolume = soundVolume - 1;
         }
-    }
-
-    public int getSoundVolume() {
-        return soundVolume;
     }
 }
