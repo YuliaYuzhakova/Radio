@@ -56,7 +56,7 @@ public class Radio {
     }
 
 
-    //Выбор громкости звука в диапазоне от 0 до 10
+    //Выбор громкости звука в диапазоне от 0 до 100
     public void setSoundVolume(int newSoundVolume) {
         if (newSoundVolume < minSoundVolume) {
             return;

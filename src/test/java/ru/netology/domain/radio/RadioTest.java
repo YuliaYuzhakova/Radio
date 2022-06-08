@@ -86,7 +86,7 @@ public class RadioTest {
         assertEquals(9, station.getCurrentStation());
     }
 
-    //Выбор громкости звука в диапазоне от 0 до 10
+    //Выбор громкости звука в диапазоне от 0 до 100
     @Test
     void choiceVolumeSound1() {
         station.setSoundVolume(100);
